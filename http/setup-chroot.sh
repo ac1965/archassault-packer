@@ -1,7 +1,9 @@
 #!/bin/sh
 set -ex
 
-echo archassault64.local > /etc/hostname
+PASSWORD=$(openssl passwd -crypt 'vagrant')
+
+echo archassault.local > /etc/hostname
 
 ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 sed -i 's/#\(en_US\.UTF-8\)/\1/' /etc/locale.gen
@@ -14,9 +16,25 @@ curl $url -s -o - | sed 's/^#Server/Server/' > /etc/pacman.d/mirrorlist
 pacman -Syyu --noconfirm --needed
 pacman-db-upgrade
 
+# For ssh
+# https://wiki.archlinux.org/index.php/Network_Configuration#Device_names
+ln -sf /dev/null /etc/udev/rules.d/80-net-setup-link.rules
+ln -sf '/usr/lib/systemd/system/dhcpcd@.service' '/etc/systemd/system/multi-user.target.wants/dhcpcd@eth0.service'
+sed -i 's/#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config
+systemctl enable sshd.service
+systemctl enable dhcpcd@eth0.service
+
+# For VM
+/root/vmsetup.sh
+
+mkinitcpio -p linux
+
+# root
+usermod --password ${PASSWORD} root
+
 # For vagrant
 groupadd vagrant
-useradd --password $(openssl passwd -crypt 'vagrant') --comment 'Vagrant User' --create-home --gid users vagrant
+useradd --password ${PASSWORD} --comment 'Vagrant User' --create-home --gid users --groups vagrant,vboxsf vagrant
 echo 'Defaults env_keep += "SSH_AUTH_SOCK"' > /etc/sudoers.d/10_vagrant
 echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/10_vagrant
 chmod 0440 /etc/sudoers.d/10_vagrant
@@ -25,19 +43,13 @@ curl --output /home/vagrant/.ssh/authorized_keys --location https://raw.github.c
 chown vagrant:users /home/vagrant/.ssh/authorized_keys
 chmod 0600 /home/vagrant/.ssh/authorized_keys
 
-# Disable PredictableNetworkInterfaceNames.
-# See https://github.com/mitchellh/vagrant/blob/master/plugins/guests/arch/cap/configure_networks.rb
-# and http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/#idontlikethishowdoidisablethis
-ln -sf /dev/null /etc/udev/rules.d/80-net-name-slot.rules # v197 <= systemd <= v208
-ln -sf /dev/null /etc/udev/rules.d/80-net-setup-link.rules  # v209 <= systemd
+# http://comments.gmane.org/gmane.linux.arch.general/48739
+install --mode=0644 /root/poweroff.timer /etc/systemd/system/poweroff.timer
 
-# For ssh
-systemctl enable sshd.service
-systemctl enable dhcpcd@eth0.service
+pacman -Scc --noconfirm
 
-# For VM
-/root/vmsetup.sh
+rm -f /root/poweroff.timer
+rm -f /root/*.sh
 
-mkinitcpio -p linux
 grub-install --target=i386-pc --recheck /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg

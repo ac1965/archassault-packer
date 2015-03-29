@@ -1,10 +1,21 @@
 {
     "variables": {
-        "iso_url": "http://sourceforge.net/projects/archassault/files/iso/ArchAssault-openbox-2015.01.29-x86_64.iso/download",
-        "iso_checksum": "e6702b7f7e03e06ac623e4090340cf510932ac2b",
+        "iso_url": "http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/iso/2015.03.01/archlinux-2015.03.01-dual.iso",
+        "iso_checksum": "3bfe96921809afe9b20938f2941c5ccf5cc97fe8",
         "iso_checksum_type": "sha1",
         "box_desc": "ArchAssault base 2015.01.28 64 Bit"
     },
+    "provisioners": [
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/setup.sh",
+                "scripts/apps.sh",
+                "scripts/archassault.sh",
+                "scripts/post.sh"
+            ]
+        }
+    ],
     "builders": [
         {
             "type": "virtualbox-iso",
@@ -13,12 +24,13 @@
             "iso_checksum_type": "{{user `iso_checksum_type`}}",
             "guest_os_type": "ArchLinux_64",
             "guest_additions_mode": "disable",
-            "http_directory": ".",
+            "http_directory": "http",
             "boot_wait": "5s",
             "boot_command": [
                 "<enter><wait10><wait10>",
-                "curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/setup.sh<enter><wait>",
-                "sh setup.sh http://{{ .HTTPIP }}:{{ .HTTPPort }} virtaulbox<enter>"
+                "curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/setup.sh<enter><wait5>",
+                "curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/poweroff.timer<enter><wait5>",
+                "sh setup.sh http://{{ .HTTPIP }}:{{ .HTTPPort }} virtualbox<enter><wait5>"
             ],
             "disk_size": 20480,
             "hard_drive_interface": "sata",
@@ -32,23 +44,18 @@
             "iso_checksum": "{{user `iso_checksum`}}",
             "iso_checksum_type": "{{user `iso_checksum_type`}}",
             "guest_os_type": "ArchLinux_64",
-            "http_directory": ".",
+            "http_directory": "http",
             "boot_wait": "5s",
             "boot_command": [
                 "<enter><wait10><wait10>",
-                "curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/setup.sh<enter><wait>",
-                "sh setup.sh http://{{ .HTTPIP }}:{{ .HTTPPort }} vmware<enter>"
+                "curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/setup.sh<enter><wait5>",
+                "curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/poweroff.timer<enter><wait5>",
+                "sh setup.sh http://{{ .HTTPIP }}:{{ .HTTPPort }} vmware<enter><wait5>"
             ],
             "disk_size": 20480,
             "ssh_username": "root",
             "ssh_password": "vagrant",
             "shutdown_command": "systemctl start poweroff.timer"
-        }
-    ],
-    "provisioners": [
-        {
-            "type": "shell",
-            "scripts": ["scripts/vagrant.sh"]
         }
     ],
     "post-processors": [
