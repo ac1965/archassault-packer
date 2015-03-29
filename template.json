@@ -1,0 +1,60 @@
+{
+    "variables": {
+        "iso_url": "http://sourceforge.net/projects/archassault/files/iso/ArchAssault-openbox-2015.01.29-x86_64.iso/download",
+        "iso_checksum": "e6702b7f7e03e06ac623e4090340cf510932ac2b",
+        "iso_checksum_type": "sha1",
+        "box_desc": "ArchAssault base 2015.01.28 64 Bit"
+    },
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "iso_url": "{{user `iso_url`}}",
+            "iso_checksum": "{{user `iso_checksum`}}",
+            "iso_checksum_type": "{{user `iso_checksum_type`}}",
+            "guest_os_type": "ArchLinux_64",
+            "guest_additions_mode": "disable",
+            "http_directory": ".",
+            "boot_wait": "5s",
+            "boot_command": [
+                "<enter><wait10><wait10>",
+                "curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/setup.sh<enter><wait>",
+                "sh setup.sh http://{{ .HTTPIP }}:{{ .HTTPPort }} virtaulbox<enter>"
+            ],
+            "disk_size": 20480,
+            "hard_drive_interface": "sata",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "shutdown_command": "systemctl start poweroff.timer"
+        },
+        {
+            "type": "vmware-iso",
+            "iso_url": "{{user `iso_url`}}",
+            "iso_checksum": "{{user `iso_checksum`}}",
+            "iso_checksum_type": "{{user `iso_checksum_type`}}",
+            "guest_os_type": "ArchLinux_64",
+            "http_directory": ".",
+            "boot_wait": "5s",
+            "boot_command": [
+                "<enter><wait10><wait10>",
+                "curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/setup.sh<enter><wait>",
+                "sh setup.sh http://{{ .HTTPIP }}:{{ .HTTPPort }} vmware<enter>"
+            ],
+            "disk_size": 20480,
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "shutdown_command": "systemctl start poweroff.timer"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "scripts": ["scripts/vagrant.sh"]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "output": "packer_archassault_{{.Provider}}.box"
+        }
+    ]
+}

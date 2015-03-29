@@ -1,0 +1,41 @@
+#!/bin/sh
+set -ex
+http_root="$1"
+vm="$2"
+shift
+
+sgdisk --new 1::+1m --typecode 1:ef02 --new 2::+100m --new 3 /dev/sda
+mkfs.ext4 /dev/sda2
+mkfs.ext4 /dev/sda3
+mount /dev/sda3 /mnt
+mkdir /mnt/boot
+mount /dev/sda2 /mnt/boot
+
+#cp /etc/pacman.d/mirrorlist /tmp/mirrorlist
+#rankmirrors -n 3 /tmp/mirrorlist > /etc/pacman.d/mirrorlist
+echo 'Server = http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+pacstrap /mnt base grub sudo openssh
+genfstab -U -p /mnt >> /mnt/etc/fstab
+
+setup_chroot=/root/setup-chroot.sh
+curl -o /mnt/$setup_chroot "$http_root/setup-chroot.sh"
+chmod +x /mnt/$setup_chroot
+
+vmsetup=/root/vmsetup.sh
+case "$vm" in
+    virtualbox)
+        curl -o /mnt/$vmsetup "$http_root/setup-virtualbox.sh"
+        chmod +x /mnt/$vmsetup
+        ;;
+    vmware)
+        curl -o /mnt/$vmsetup "$http_root/setup-virtualbox.sh"
+        chmod +x /mnt/$vmsetup
+        ;;
+esac
+
+arch-chroot /mnt $setup_chroot
+
+rm /mnt/$setup_chroot
+rm /mnt/$setup_virtual
+umount /mnt/{boot,}
+reboot
