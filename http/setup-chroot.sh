@@ -1,8 +1,10 @@
 #!/bin/sh
-set -ex
+
+set -e
 
 PASSWORD=$(openssl passwd -crypt 'vagrant')
 
+echo [+] ArchLinux Setup
 echo archassault.local > /etc/hostname
 
 ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
@@ -24,6 +26,9 @@ sed -i 's/#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config
 systemctl enable sshd.service
 systemctl enable dhcpcd@eth0.service
 
+pacman -Scc --noconfirm
+
+echo [+] VM Setup
 # For VM
 /root/vmsetup.sh
 
@@ -32,6 +37,7 @@ mkinitcpio -p linux
 # root
 usermod --password ${PASSWORD} root
 
+echo [+] Vagrant Setup
 # For vagrant
 groupadd vagrant
 useradd --password ${PASSWORD} --comment 'Vagrant User' --create-home --gid users --groups vagrant,vboxsf vagrant

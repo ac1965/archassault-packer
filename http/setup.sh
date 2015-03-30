@@ -1,12 +1,13 @@
 #!/bin/sh
 
-set -ex
+set -e
 
 http_root="$1"
 vm="$2"
 
 shift
 
+echo [+] ArchLinux Build
 sgdisk --new 1::+1m --typecode 1:ef02 --new 2::+100m --new 3 /dev/sda
 
 mkfs.ext4 /dev/sda2
@@ -15,6 +16,7 @@ mount /dev/sda3 /mnt
 mkdir /mnt/boot
 mount /dev/sda2 /mnt/boot
 
+echo [+] Chroot Setup
 #echo 'Server = http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 url="https://www.archlinux.org/mirrorlist/?country=JP&protocol=http&ip_version=4&use_mirror_status=on"
 curl $url -s -o - | sed 's/^#Server/Server/' > /etc/pacman.d/mirrorlist

@@ -3,25 +3,25 @@
 cd /tmp
 
 echo [+] Install ArchAssault tools Apps
-pacman -S --needed --noconfirm p0f
-pacman -S --needed --noconfirm zaproxy
-pacman -S --needed --noconfirm proxychains
-pacman -S --needed --noconfirm dradis
+pacman -S --noconfirm --needed p0f
+pacman -S --noconfirm --needed zaproxy
+pacman -S --noconfirm --needed proxychains
+pacman -S --noconfirm --needed dradis
 
 echo [+] Install Forensic Tools
-pacman -S --needed --noconfirm python2-crypto
-pacman -S --needed --noconfirm dcfldd
-pacman -S --needed --noconfirm sleuthkit
-pacman -S --needed --noconfirm rkhunter
+pacman -S --noconfirm --needed python2-crypto
+pacman -S --noconfirm --needed dcfldd
+pacman -S --noconfirm --needed sleuthkit
+pacman -S --noconfirm --needed rkhunter
 
 echo [+] Install ArchAssault Group Tools
-#pacman -S --needed --noconfirm archassault-analysis \
-#       archassault-forensic archasssault-malware \
-#       archassault-windows archassault-reversing
+pacman -S --noconfirm --needed archassault-analysis \
+       archassault-forensic archasssault-malware \
+       archassault-windows archassault-reversing
 
 echo [+] Install Metasploit and configuration Postgres
-pacman -S --needed --noconfirm postgresql
-pacman -S --needed --noconfirm metasploit
+pacman -S --noconfirm --needed postgresql
+pacman -S --noconfirm --needed metasploit
 
 systemd-tmpfiles --create postgresql.conf
 su - postgres -c "initdb --locale en_US.UTF-8 -E UTF8 -D '/var/lib/postgres/data'"

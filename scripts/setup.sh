@@ -114,7 +114,7 @@ Server = http://repo.archlinux.fr/$arch
 [archassault]
 SigLevel = Required DatabaseOptional TrustedOnly
 Server = http://repo.archassault.org/archassault/$repo/os/$arch
-#@ Include = /etc/pacman.d/archassault.mirrorlist
+#@ Include = /etc/pacman.d/archassault-mirrorlist
 
 # An example of a custom package repository.  See the pacman manpage for
 # tips on creating your own repositories.
@@ -221,7 +221,7 @@ Server = http://repo.archlinux.fr/$arch
 [archassault]
 SigLevel = Required DatabaseOptional TrustedOnly
 Server = http://repo.archassault.org/archassault/$repo/os/$arch
-#@ Include = /etc/pacman.d/archassault.mirrorlist
+#@ Include = /etc/pacman.d/archassault-mirrorlist
 
 # An example of a custom package repository.  See the pacman manpage for
 # tips on creating your own repositories.
@@ -232,21 +232,21 @@ Server = http://repo.archassault.org/archassault/$repo/os/$arch
 EOF
 fi
 
-pacman -Syy --noconfir archassault-keyring archassault-mirrorlist
+pacman -Syyu --noconfir archassault-keyring archassault-mirrorlist
 sed -i 's/^#@ \(Include\)/\1/' /etc/pacman.d/archassault-mirrorlist
 
 if [[ ${arch} == i686 ]]; then
     echo [+] Remove cryptsetup, gcc, gc-libs
     pacman -Rddd --noconfirm cryptsetup
     echo [+] Add mirrors, cryptsetup-nuke-keys
-    pacman -Syy --noconfirm \
+    pacman -S --noconfirm --needed \
            cryptsetup-nuke-keys \
            yaourt
 else 
     echo [+] Remove cryptsetup, gcc, gc-libs
     pacman -Rddd --noconfirm cryptsetup gcc gcc-libs
     echo [+] Add mirrors, cryptsetup-nuke-keys and gcc-multilib
-    pacman -Syy --noconfirm \
+    pacman -S --noconfirm --needed \
            cryptsetup-nuke-keys \
            gcc-libs-multilib multilib-devel \
            yaourt
