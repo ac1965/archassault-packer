@@ -4,8 +4,7 @@ set -e
 
 http_root="$1"
 vm="$2"
-
-shift
+arch="$2"
 
 echo [+] ArchLinux Build
 sgdisk --new 1::+1m --typecode 1:ef02 --new 2::+100m --new 3 /dev/sda
@@ -41,7 +40,7 @@ case "$vm" in
         ;;
 esac
 
-arch-chroot /mnt $setup_chroot
+arch-chroot /mnt $setup_chroot $arch
 
 umount /mnt/{boot,}
 systemctl reboot

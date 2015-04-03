@@ -1,6 +1,6 @@
 {
     "variables": {
-        "box_desc": "ArchAssault base 2015.01.28 64 Bit",
+        "box_desc": "ArchAssault base 2015.03.01 64 Bit",
         "guest_os_type": "ArchLinux_64",
         "iso_url": "http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/iso/2015.03.01/archlinux-2015.03.01-dual.iso",
         "iso_checksum": "3bfe96921809afe9b20938f2941c5ccf5cc97fe8",
@@ -32,7 +32,7 @@
                 "<enter><wait10><wait10>",
                 "curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/setup.sh<enter><wait5>",
                 "curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/poweroff.timer<enter><wait5>",
-                "sh setup.sh http://{{ .HTTPIP }}:{{ .HTTPPort }} virtualbox<enter><wait5>"
+                "sh setup.sh http://{{ .HTTPIP }}:{{ .HTTPPort }} virtualbox x86_64<enter><wait5>"
             ],
             "disk_size": "{{user `disk_size`}}",
             "hard_drive_interface": "sata",
@@ -52,7 +52,7 @@
                 "<enter><wait10><wait10>",
                 "curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/setup.sh<enter><wait5>",
                 "curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/poweroff.timer<enter><wait5>",
-                "sh setup.sh http://{{ .HTTPIP }}:{{ .HTTPPort }} vmware<enter><wait5>"
+                "sh setup.sh http://{{ .HTTPIP }}:{{ .HTTPPort }} vmware x86_64<enter><wait5>"
             ],
             "disk_size": "{{user `disk_size`}}",
             "ssh_username": "root",

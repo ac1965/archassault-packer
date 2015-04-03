@@ -234,6 +234,7 @@ fi
 
 pacman -Syyu --noconfir archassault-keyring archassault-mirrorlist
 sed -i 's/^#@ \(Include\)/\1/' /etc/pacman.d/archassault-mirrorlist
+pacman -Syy
 
 if [[ ${arch} == i686 ]]; then
     echo [+] Remove cryptsetup, gcc, gc-libs

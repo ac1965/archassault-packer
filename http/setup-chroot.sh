@@ -2,6 +2,8 @@
 
 set -e
 
+arch="$1"
+
 PASSWORD=$(openssl passwd -crypt 'vagrant')
 
 echo [+] ArchLinux Setup
@@ -30,7 +32,7 @@ pacman -Scc --noconfirm
 
 echo [+] VM Setup
 # For VM
-/root/vmsetup.sh
+/root/vmsetup.sh $arch
 
 mkinitcpio -p linux
 
@@ -45,14 +47,14 @@ echo 'Defaults env_keep += "SSH_AUTH_SOCK"' > /etc/sudoers.d/10_vagrant
 echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/10_vagrant
 chmod 0440 /etc/sudoers.d/10_vagrant
 install --directory --owner=vagrant --group=users --mode=0700 /home/vagrant/.ssh
-curl --output /home/vagrant/.ssh/authorized_keys --location https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
+curl -s -o /home/vagrant/.ssh/authorized_keys -L https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
 chown vagrant:users /home/vagrant/.ssh/authorized_keys
 chmod 0600 /home/vagrant/.ssh/authorized_keys
 
 # http://comments.gmane.org/gmane.linux.arch.general/48739
 install --mode=0644 /root/poweroff.timer /etc/systemd/system/poweroff.timer
 
-pacman -Scc --noconfirm
+pacman -Sc --noconfirm
 
 rm -f /root/poweroff.timer
 rm -f /root/*.sh
