@@ -4,7 +4,7 @@ set -e
 
 http_root="$1"
 vm="$2"
-arch="$2"
+arch="$3"
 
 echo [+] ArchLinux Build
 sgdisk --new 1::+1m --typecode 1:ef02 --new 2::+100m --new 3 /dev/sda
