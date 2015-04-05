@@ -1,9 +1,9 @@
 {
     "variables": {
-        "box_desc": "ArchAssault base 2015.03.01 64 Bit",
+        "box_desc": "ArchAssault base 2015.04.01 64 Bit",
         "guest_os_type": "ArchLinux_64",
-        "iso_url": "http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/iso/2015.03.01/archlinux-2015.03.01-dual.iso",
-        "iso_checksum": "3bfe96921809afe9b20938f2941c5ccf5cc97fe8",
+        "iso_url": "http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/iso/2015.04.01/archlinux-2015.04.01-dual.iso",
+        "iso_checksum": "95122cbbde7252959bcea1c49fd797eb0eb25a4b",
         "iso_checksum_type": "sha1",
         "disk_size": 32768
     },

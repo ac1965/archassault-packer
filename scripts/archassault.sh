@@ -48,9 +48,10 @@ pacman -S --noconfirm --needed zaproxy
 
 echo [+] Install ArchAssault Group Tools
 pacman -S --noconfirm --needed \
-       archassault-analysis archassault-forensic \
-       archasssault-malware archassault-windows \
-       archassault-reversing archassault-scanner
+       archassault-analysis  archassault-forensic \
+       archassault-malware   archassault-windows \
+       archassault-reversing archassault-scanner \
+       archassault-artwork
 
 echo [+] Install Metasploit and configuration Postgres
 pacman -S --noconfirm --needed postgresql
