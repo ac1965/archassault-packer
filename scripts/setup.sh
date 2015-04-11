@@ -232,8 +232,14 @@ Server = http://repo.archassault.org/archassault/$repo/os/$arch
 EOF
 fi
 
+echo [+] yaourt install
+pacman --sync --refresh yaourt
+
+
+echo [+] archassault-keyring archassault-mirrorlist install
 pacman -Syyu --noconfir archassault-keyring archassault-mirrorlist
 sed -i 's/^#@ \(Include\)/\1/' /etc/pacman.d/archassault-mirrorlist
+
 pacman -Syy
 
 if [[ ${arch} == i686 ]]; then
@@ -241,16 +247,14 @@ if [[ ${arch} == i686 ]]; then
     pacman -Rddd --noconfirm cryptsetup
     echo [+] Add mirrors, cryptsetup-nuke-keys
     pacman -S --noconfirm --needed \
-           cryptsetup-nuke-keys \
-           yaourt
+           cryptsetup-nuke-keys
 else 
     echo [+] Remove cryptsetup, gcc, gc-libs
     pacman -Rddd --noconfirm cryptsetup gcc gcc-libs
     echo [+] Add mirrors, cryptsetup-nuke-keys and gcc-multilib
     pacman -S --noconfirm --needed \
            cryptsetup-nuke-keys \
-           gcc-libs-multilib multilib-devel \
-           yaourt
+           gcc-libs-multilib multilib-devel
 fi
 
 pacman -Sc --noconfirm

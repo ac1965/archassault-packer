@@ -35,6 +35,7 @@ echo [+] VM Setup
 /root/vmsetup.sh $arch
 
 mkinitcpio -p linux
+sync;sync;sync;sleep 1;
 
 # root
 usermod --password ${PASSWORD} root
