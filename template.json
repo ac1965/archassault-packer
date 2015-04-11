@@ -13,7 +13,6 @@
             "scripts": [
                 "scripts/setup.sh",
                 "scripts/apps.sh",
-                "scripts/archassault.sh",
                 "scripts/post.sh"
             ]
         }

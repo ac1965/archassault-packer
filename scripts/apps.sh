@@ -4,11 +4,11 @@ cd /tmp
 
 echo [+] Install Apps
 sleep 2
+pacman -S --noconfirm --needed bzr mercurial subversion git
 pacman -S --noconfirm --needed pyenv renv
 pacman -S --noconfirm --needed alsa-utils
 pacman -S --noconfirm --needed wpa_actiond wpa_supplicant crda
 pacman -S --noconfirm --needed android-tools android-udev
-pacman -S --noconfirm --needed bzr mercurial subversion
 pacman -S --noconfirm --needed dosfstools encfs ntfs-3g
 pacman -S --noconfirm --needed jre7-openjdk jdk7-openjdk
 pacman -S --noconfirm --needed ltrace strace tcpdump whois dnsutils tor networkmanager openntpd
@@ -33,6 +33,11 @@ pacman -S --noconfirm --needed nautilus
 pacman -S --noconfirm --needed network-manager-applet
 pacman -S --noconfirm --needed openbox obconf tint2
 pacman -S --noconfirm --needed emacs
+
+pacman -S --noconfirm --needed postgresql
+
+pacman -S --noconfirm --needed \
+       python2-psycopg2 python2-argparse python2-flask python2-progressbar
 
 su - vagrant -c "yaourt -S --noconfirm --needed asciinema"
 su - vagrant -c "yaourt -S --noconfirm --needed nkf"
