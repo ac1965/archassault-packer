@@ -4,7 +4,7 @@ cd /tmp
 
 echo [+] Install Apps
 sleep 2
-pacman -S --noconfirm --needed bzr mercurial subversion git
+pacman -S --noconfirm --needed bzr mercurial subversion
 pacman -S --noconfirm --needed alsa-utils
 pacman -S --noconfirm --needed wpa_actiond wpa_supplicant crda
 pacman -S --noconfirm --needed android-tools android-udev

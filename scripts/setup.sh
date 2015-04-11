@@ -232,10 +232,6 @@ Server = http://repo.archassault.org/archassault/$repo/os/$arch
 EOF
 fi
 
-echo [+] yaourt install
-pacman --sync --refresh yaourt
-
-
 echo [+] archassault-keyring archassault-mirrorlist install
 pacman -Syyu --noconfir archassault-keyring archassault-mirrorlist
 sed -i 's/^#@ \(Include\)/\1/' /etc/pacman.d/archassault-mirrorlist
@@ -256,6 +252,13 @@ else
            cryptsetup-nuke-keys \
            gcc-libs-multilib multilib-devel
 fi
+
+echo [+] yaourt install
+#su - vagrant -c "curl -O -s -L http://aur.archlinux.org//packages/ya/yajl1/yajl1.tar.gz; tar xfz yajl1.tar.gz; cd yajl1; makepkg -i"
+#su - vagrant -c "curl -O -s -L http://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz; tar xfz package-query.tar.gz; cd package-query; makepkg -i"
+#su - vagrant -c "curl -O -s -L http://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz; tar xfz yaourt.tar.gz; cd yaourt; makepkg -i"
+#su - vagrant -c "test -d package-query && rm -fr package-query; test -d yaourt && rm -fr yaourt"
+pacman -S --noconfirm --needed yaourt
 
 pacman -Sc --noconfirm
 

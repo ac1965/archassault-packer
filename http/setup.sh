@@ -19,7 +19,7 @@ echo [+] Chroot Setup
 #echo 'Server = http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 url="https://www.archlinux.org/mirrorlist/?country=JP&protocol=http&ip_version=4&use_mirror_status=on"
 curl $url -s -o - | sed 's/^#Server/Server/' > /etc/pacman.d/mirrorlist
-pacstrap /mnt base grub sudo openssh haveged
+pacstrap /mnt base grub sudo openssh haveged git
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
 cp /root/poweroff.timer /mnt/root/poweroff.timer
