@@ -19,12 +19,14 @@ pacman -S --noconfirm --needed virtualbox virtualbox-host-modules
 
 pacman -S --noconfirm --needed xorg
 pacman -S --noconfirm --needed slim slim-themes
-pacman -S --noconfirm --needed python2 python2-pip
-pacman -S --noconfirm --needed pygtk
+pacman -S --noconfirm --needed python python-pip python2 python2-pip
 
 pacman -S --noconfirm --needed \
 	adobe-source-code-pro-fonts adobe-source-sans-pro-fonts
 pacman -S --noconfirm --needed ttf-inconsolata ttf-sazanami
+
+pacman -S --noconfirm --needed pygtk
+pacman -S --noconfirm --needed wireshark-qt
 
 pacman -S --noconfirm --needed anthy uim
 pacman -S --noconfirm --needed autocutsel xterm
@@ -36,8 +38,15 @@ pacman -S --noconfirm --needed mousepad xclip xpad xmind
 pacman -S --noconfirm --needed nautilus
 pacman -S --noconfirm --needed network-manager-applet
 pacman -S --noconfirm --needed openbox obconf tint2
+pacman -S --noconfirm --needed i3 dmenu
 pacman -S --noconfirm --needed emacs
 
+pacman -S --noconfirm --needed \
+       python2-psycopg2 python2-argparse python2-flask python2-progressbar \
+       python2-sqlalchemy python2-dpkt python2-jinja \
+       python2-magic python2-pydeep \
+       python2-lxml python2-bottle python2-pefile python2-chardet \
+       python2-django python2-pymongo 
 pacman -S --noconfirm --needed postgresql
 pacman -S --noconfirm --needed libvirt
 
@@ -47,6 +56,7 @@ su - vagrant -c "yaourt -S --noconfirm --needed \
 	libnatspec p7zip-natspec zip-natspec unzip-natspec \
 "
 su - vagrant -c "yaourt -S --noconfirm --needed rar"
+su - vagrant -c "yaourt -S --noconfirm --needed chromium-pepper-flash"
 
 pacman -Sc --noconfirm
 
