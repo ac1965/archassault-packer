@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export TMPDIR=/var/tmp
+cd /tmp
 
 echo [+] Install Generic
 pacman -S --noconfirm --needed postgresql

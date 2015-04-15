@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export TMPDIR=/var/tmp
+cd /tmp
 
 echo [+] Install Apps
 sleep 2
