@@ -16,6 +16,7 @@ pacman -S --noconfirm --needed nginx php php-fpm
 pacman -S --noconfirm --needed puppet
 pacman -S --noconfirm --needed tigervnc
 pacman -S --noconfirm --needed virtualbox virtualbox-host-modules
+pacman -S --noconfirm --needed libvirt
 
 pacman -S --noconfirm --needed xorg
 pacman -S --noconfirm --needed slim slim-themes
@@ -40,15 +41,6 @@ pacman -S --noconfirm --needed network-manager-applet
 pacman -S --noconfirm --needed openbox obconf tint2
 pacman -S --noconfirm --needed i3 dmenu
 pacman -S --noconfirm --needed emacs
-
-pacman -S --noconfirm --needed \
-       python2-psycopg2 python2-argparse python2-flask python2-progressbar \
-       python2-sqlalchemy python2-dpkt python2-jinja \
-       python2-magic python2-pydeep \
-       python2-lxml python2-bottle python2-pefile python2-chardet \
-       python2-django python2-pymongo 
-pacman -S --noconfirm --needed postgresql
-pacman -S --noconfirm --needed libvirt
 
 su - vagrant -c "yaourt -S --noconfirm --needed asciinema"
 su - vagrant -c "yaourt -S --noconfirm --needed nkf"

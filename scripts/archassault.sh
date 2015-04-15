@@ -3,6 +3,7 @@
 export TMPDIR=/var/tmp
 
 echo [+] Install Generic
+pacman -S --noconfirm --needed postgresql
 pacman -S --noconfirm --needed aircrack-ng
 pacman -S --noconfirm --needed arp-scan
 pacman -S --noconfirm --needed bsdiff
@@ -44,6 +45,12 @@ pacman -S --noconfirm --needed stunnel
 pacman -S --noconfirm --needed tcpreplay
 pacman -S --noconfirm --needed wireshark-cli
 pacman -S --noconfirm --needed zaproxy
+pacman -S --noconfirm --needed \
+       python2-psycopg2 python2-argparse python2-flask python2-progressbar \
+       python2-sqlalchemy python2-dpkt python2-jinja \
+       python2-magic python2-pydeep \
+       python2-lxml python2-bottle python2-pefile python2-chardet \
+       python2-django python2-pymongo 
 
 echo [+] Install ArchAssault Group Tools
 pacman -S --noconfirm --needed \
