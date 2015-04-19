@@ -43,6 +43,6 @@ su - vagrant -c "cd github; git clone git://github.com/MalwareLu/malwasm.git; cd
 su - vagrant -c "cd github; git clone git://github.com/cuckoobox/cuckoo.git; cd - > /dev/null"
 su - vagrant -c "git clone git://github.com/yyuu/pyenv.git ~/.pyenv && (cd ~/.pyenv/plugins; git clone git://github.com/yyuu/pyenv-virtualenv.git)"
 su - vagrant -c "git clone git://github.com/ac1965/vagrant-dotfiles.git; cd vagrant-dotfiles; ./setup.sh"
-su - vagrant -c "source ~/.bashrc && pyenv install 2.7.9 && pyenv virtualenv 2.7.9 sandbox279 && pyenv local sandbox279"
+su - vagrant -c "source ~/.bashrc && pyenv install 2.7.9 && pyenv virtualenv 2.7.9 sandbox279 && pyenv global sandbox279"
 
 cd - >/dev/null

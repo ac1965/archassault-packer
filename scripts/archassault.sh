@@ -46,18 +46,15 @@ pacman -S --noconfirm --needed stunnel
 pacman -S --noconfirm --needed tcpreplay
 pacman -S --noconfirm --needed wireshark-cli
 pacman -S --noconfirm --needed zaproxy
-pacman -S --noconfirm --needed \
-       python2-psycopg2 python2-argparse python2-flask python2-progressbar \
-       python2-sqlalchemy python2-dpkt python2-jinja \
-       python2-magic python2-pydeep \
-       python2-lxml python2-bottle python2-pefile python2-chardet \
-       python2-django python2-pymongo 
 
 echo [+] Install ArchAssault Group Tools
 pacman -S --noconfirm --needed \
        archassault-scannner
 pacman -S --noconfirm --needed \
        thezoo-git \
+       distorm \
+       clamav \
+       volatility \
        mitmf-git \
        viper-git \
        python2-yara \

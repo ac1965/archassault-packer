@@ -40,7 +40,6 @@ pacman -S --noconfirm --needed mousepad xclip xpad xmind
 pacman -S --noconfirm --needed nautilus
 pacman -S --noconfirm --needed network-manager-applet
 pacman -S --noconfirm --needed openbox obconf tint2
-pacman -S --noconfirm --needed i3 dmenu
 pacman -S --noconfirm --needed emacs
 
 su - vagrant -c "yaourt -S --noconfirm --needed asciinema"
