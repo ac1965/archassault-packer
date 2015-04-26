@@ -48,7 +48,10 @@ su - vagrant -c "yaourt -S --noconfirm --needed \
 	libnatspec p7zip-natspec zip-natspec unzip-natspec \
 "
 su - vagrant -c "yaourt -S --noconfirm --needed rar"
+su - vagrant -c "yaourt -S --noconfirm --needed chromium firefox"
 su - vagrant -c "yaourt -S --noconfirm --needed chromium-pepper-flash"
+su - vagrant -c "yaourt -S --noconfirm --needed otf-takao otf-takaoex otf-takaomj"
+su - vagrant -c "yaourt -S --noconfirm --needed ttf-ms-fonts"
 
 pacman -Sc --noconfirm
 

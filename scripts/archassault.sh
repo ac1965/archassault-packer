@@ -4,7 +4,7 @@ export TMPDIR=/var/tmp
 cd /tmp
 
 echo [+] Install Generic
-pacman -S --noconfirm --needed postgresql
+pacman -S --noconfirm --needed postgresql mysql
 pacman -S --noconfirm --needed aircrack-ng
 pacman -S --noconfirm --needed arp-scan
 pacman -S --noconfirm --needed bsdiff
@@ -51,14 +51,13 @@ echo [+] Install ArchAssault Group Tools
 pacman -S --noconfirm --needed \
        archassault-scannner
 pacman -S --noconfirm --needed \
-       thezoo-git \
+       python2-yara \
+       yara \
        distorm \
        clamav \
        volatility \
        mitmf-git \
        viper-git \
-       python2-yara \
-       yara \
        malheur \
        js-beautify \
        ollydbg \
