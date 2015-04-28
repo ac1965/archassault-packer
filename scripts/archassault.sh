@@ -4,8 +4,6 @@ export TMPDIR=/var/tmp
 cd /tmp
 
 echo [+] Install Generic
-pacman -S --noconfirm --needed postgresql mysql
-pacman -S --noconfirm --needed aircrack-ng
 pacman -S --noconfirm --needed arp-scan
 pacman -S --noconfirm --needed bsdiff
 pacman -S --noconfirm --needed cadaver
@@ -20,14 +18,12 @@ pacman -S --noconfirm --needed ettercap
 pacman -S --noconfirm --needed exiv2
 pacman -S --noconfirm --needed extundelete
 pacman -S --noconfirm --needed fping
-pacman -S --noconfirm --needed gdb
 pacman -S --noconfirm --needed gnu-netcat
 pacman -S --noconfirm --needed hping
 pacman -S --noconfirm --needed iodine
 pacman -S --noconfirm --needed iputils
 pacman -S --noconfirm --needed jad
 pacman -S --noconfirm --needed john
-pacman -S --noconfirm --needed kismet
 pacman -S --noconfirm --needed macchanger
 pacman -S --noconfirm --needed mtr
 pacman -S --noconfirm --needed nbtscan
@@ -51,17 +47,12 @@ echo [+] Install ArchAssault Group Tools
 pacman -S --noconfirm --needed \
        archassault-scannner
 pacman -S --noconfirm --needed \
-       python2-yara \
-       yara \
-       distorm \
        clamav \
-       volatility \
        mitmf-git \
        viper-git \
        malheur \
        js-beautify \
-       ollydbg \
-       vmcloak
+       ollydbg
 
 echo [+] Install Metasploit and configuration Postgres
 pacman -S --noconfirm --needed metasploit
