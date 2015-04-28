@@ -18,6 +18,9 @@ vboxnetflt
 vboxpci
 EOF
 
+test -d /etc/ld.so.conf.d || install -d /etc/ld.so.conf.d
+echo '/usr/local/lib' > /etc/ld.so.conf.d/locallib.conf
+
 usermod -aG "adbusers,audio,tor,postgres,mysql" vagrant
 
 systemctl start slim.service
