@@ -42,10 +42,6 @@ pacman -S --noconfirm --needed stunnel
 pacman -S --noconfirm --needed tcpreplay
 pacman -S --noconfirm --needed wireshark-cli
 pacman -S --noconfirm --needed zaproxy
-
-echo [+] Install ArchAssault Group Tools
-pacman -S --noconfirm --needed \
-       archassault-scannner
 pacman -S --noconfirm --needed \
        clamav \
        mitmf-git \
@@ -54,7 +50,11 @@ pacman -S --noconfirm --needed \
        js-beautify \
        ollydbg
 
-echo [+] Install Metasploit and configuration Postgres
+echo [+] Install ArchAssault Group Tools
+pacman -S --noconfirm --needed \
+       archassault-scannner
+
+echo [+] Install Metasploit
 pacman -S --noconfirm --needed metasploit
 
 echo 'export MSF_DATABASE_CONFIG=/usr/share/metasploit/database.yml' > /etc/profile.d/msf.sh
