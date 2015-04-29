@@ -33,6 +33,8 @@ pacman -S --noconfirm --needed pygtk
 pacman -S --noconfirm --needed wireshark-qt
 pacman -S --noconfirm --needed emacs
 
+pacman -S --noconfirm --needed postgresql mysql
+
 pacman -S --noconfirm --needed anthy uim
 pacman -S --noconfirm --needed autocutsel xterm
 pacman -S --noconfirm --needed conky dmenu feh scrot
@@ -43,11 +45,9 @@ pacman -S --noconfirm --needed lxterminal
 pacman -S --noconfirm --needed network-manager-applet
 pacman -S --noconfirm --needed chromium firefox
 
-pacman -S --noconfirm --needed postgresql mysql
+pacman -S --noconfirm --needed \
+       awesome rlwrap dex vicious
 
-pacman -Sc --noconfirm
-
-su - vagrant -c "env TMPDIR=/var/tmp yaourt -S --noconfirm --needed awesome-git"
 su - vagrant -c "env TMPDIR=/var/tmp yaourt -S --noconfirm --needed asciinema"
 su - vagrant -c "env TMPDIR=/var/tmp yaourt -S --noconfirm --needed nkf"
 su - vagrant -c "env TMPDIR=/var/tmp yaourt -S --noconfirm --needed \
