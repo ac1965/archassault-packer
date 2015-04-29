@@ -59,4 +59,10 @@ pyenv virtualenv 2.7.9 sandbox279 && \
 pyenv global sandbox279
 "
 
+su - vagrant -c "test -d ~/github || install -d ~/github"
+for repos in MalwareLu/malwasm ytisf/theZoo
+do
+	  su - vagrant -c "cd github; git clone git://github.com/${repos}.git"
+done
+
 cd - >/dev/null

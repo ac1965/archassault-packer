@@ -17,7 +17,7 @@ pacman -S --noconfirm --needed \
 	ltrace strace tcpdump whois dnsutils tor networkmanager openntpd
 pacman -S --noconfirm --needed nginx php php-fpm
 pacman -S --noconfirm --needed python python-pip puppet
-pacman -S --noconfirm --needed tigervnc
+pacman -S --noconfirm --needed tigervnc rdesktop
 pacman -S --noconfirm --needed virtualbox virtualbox-host-modules
 pacman -S --noconfirm --needed libvirt
 
