@@ -14,7 +14,6 @@ pacman -S --noconfirm --needed dnstracer
 pacman -S --noconfirm --needed dradis
 pacman -S --noconfirm --needed dsniff
 pacman -S --noconfirm --needed etherape
-pacman -S --noconfirm --needed ettercap
 pacman -S --noconfirm --needed exiv2
 pacman -S --noconfirm --needed extundelete
 pacman -S --noconfirm --needed fping
@@ -49,17 +48,17 @@ pacman -S --noconfirm --needed \
        malheur \
        js-beautify \
        ollydbg
+pacman -Sc --noconfirm
 
-echo [+] Install ArchAssault Group Tools
-pacman -S --noconfirm --needed \
-       archassault-scannner
 
 echo [+] Install Metasploit
 pacman -S --noconfirm --needed metasploit
+pacman -Sc --noconfirm
 
-echo 'export MSF_DATABASE_CONFIG=/usr/share/metasploit/database.yml' > /etc/profile.d/msf.sh
-chmod +x /etc/profile.d/msf.sh
 
+echo [+] Install ArchAssault Group Tools
+pacman -S --noconfirm --needed \
+       archassault
 pacman -Sc --noconfirm
 
 cd - > /dev/null

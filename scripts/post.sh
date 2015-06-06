@@ -32,17 +32,27 @@ initdb --locale en_US.UTF-8 -E UTF8 -D '/var/lib/postgres/data'
 "
 systemctl start postgresql
 systemctl enable postgresql
+su - postgres -c "\
+createuser msfgit -P -S -R -D
+createdb -O msfgit msfgit
+"
 cat - > /usr/share/metasploit/database.yml <<'EOF'
 production:
   adapter: "postgresql"
-  database: "msfdb"
-  username: "msfdbuser"
-  password: ""
+  database: "msfgit"
+  username: "msfgit"
+  password: "msf"
   port: 5432
   host: "localhost"
   pool: 256
   timeout: 5
 EOF
+
+echo 'export MSF_DATABASE_CONFIG=/usr/share/metasploit/database.yml' > /etc/profile.d/msf.sh
+chmod +x /etc/profile.d/msf.sh
+
+echo [+] User Environment Setup
+sleep 2
 
 su - vagrant -c "\
 git clone git://github.com/ac1965/vagrant-dotfiles.git && \
@@ -62,7 +72,7 @@ pyenv global sandbox279
 su - vagrant -c "test -d ~/github || install -d ~/github"
 for repos in MalwareLu/malwasm ytisf/theZoo
 do
-	  su - vagrant -c "cd github; git clone git://github.com/${repos}.git"
+    su - vagrant -c "cd github; git clone git://github.com/${repos}.git"
 done
 
 cd - >/dev/null

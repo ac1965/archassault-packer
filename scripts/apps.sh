@@ -37,7 +37,7 @@ pacman -S --noconfirm --needed postgresql mysql
 
 pacman -S --noconfirm --needed anthy uim
 pacman -S --noconfirm --needed autocutsel xterm
-pacman -S --noconfirm --needed conky dmenu feh scrot
+pacman -S --noconfirm --needed feh scrot
 pacman -S --noconfirm --needed mousepad xclip xpad xmind
 pacman -S --noconfirm --needed nautilus
 pacman -S --noconfirm --needed go googlecl
@@ -46,7 +46,7 @@ pacman -S --noconfirm --needed network-manager-applet
 pacman -S --noconfirm --needed chromium firefox
 
 pacman -S --noconfirm --needed \
-       awesome rlwrap dex vicious
+       mate
 
 su - vagrant -c "env TMPDIR=/var/tmp yaourt -S --noconfirm --needed asciinema"
 su - vagrant -c "env TMPDIR=/var/tmp yaourt -S --noconfirm --needed nkf"
@@ -61,6 +61,7 @@ su - vagrant -c "env TMPDIR=/var/tmp yaourt -S --noconfirm --needed \
   otf-takao ttf-ms-fonts ttf-ricty
 "
 
+pacman -R --noconfirm libsodium libspiro libunicodenames libxkbui zeromq fontforge
 pacman -Sc --noconfirm
 rm -fr /var/tmp/*
 

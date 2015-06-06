@@ -9,6 +9,6 @@ guest_version=$(pacman -Q virtualbox-guest-dkms | awk '{ print $2 }' | cut -d'-'
 kernel_version="$(pacman -Q linux | awk '{ print $2 }')-ARCH"
 dkms install "vboxguest/${guest_version}" -k "${kernel_version}/${arch}"
 systemctl enable dkms.service
-systemctl enable vboxservice.service
-systemctl enable rcpbind.service
+#systemctl enable vboxservice.service
+#systemctl enable rcpbind.service
 
