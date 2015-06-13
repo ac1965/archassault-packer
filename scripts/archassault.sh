@@ -29,25 +29,22 @@ pacman -S --noconfirm --needed nbtscan
 pacman -S --noconfirm --needed ngrep
 pacman -S --noconfirm --needed nmap
 pacman -S --noconfirm --needed ophcrack
-pacman -S --noconfirm --needed p0f
 pacman -S --noconfirm --needed proxychains
 pacman -S --noconfirm --needed proxytunnel
 pacman -S --noconfirm --needed python2-crypto
 pacman -S --noconfirm --needed rkhunter
 pacman -S --noconfirm --needed siege
-pacman -S --noconfirm --needed sleuthkit
 pacman -S --noconfirm --needed socat
 pacman -S --noconfirm --needed stunnel
 pacman -S --noconfirm --needed tcpreplay
 pacman -S --noconfirm --needed wireshark-cli
-pacman -S --noconfirm --needed zaproxy
+pacman -S --noconfirm --needed ollydbg
+pacman -S --noconfirm --needed js-beautify
+pacman -S --noconfirm --needed clamav
 pacman -S --noconfirm --needed \
-       clamav \
        mitmf-git \
        viper-git \
-       malheur \
-       js-beautify \
-       ollydbg
+       malheur
 pacman -Sc --noconfirm
 
 
@@ -56,9 +53,9 @@ pacman -S --noconfirm --needed metasploit
 pacman -Sc --noconfirm
 
 
-echo [+] Install ArchAssault Group Tools
-pacman -S --noconfirm --needed \
-       archassault
-pacman -Sc --noconfirm
+# echo [+] Install ArchAssault Group Tools
+# pacman -S --noconfirm --needed \
+#        archassault
+# pacman -Sc --noconfirm
 
 cd - > /dev/null

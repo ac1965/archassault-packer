@@ -23,7 +23,7 @@ echo '/usr/local/lib' > /etc/ld.so.conf.d/locallib.conf
 
 usermod -aG "adbusers,audio,tor,postgres,mysql" vagrant
 
-systemctl start slim.service
+# systemctl start slim.service
 systemctl enable slim.service
 
 systemd-tmpfiles --create postgresql.conf
@@ -32,21 +32,24 @@ initdb --locale en_US.UTF-8 -E UTF8 -D '/var/lib/postgres/data'
 "
 systemctl start postgresql
 systemctl enable postgresql
-su - postgres -c "\
-createuser msfgit -P -S -R -D
-createdb -O msfgit msfgit
-"
-cat - > /usr/share/metasploit/database.yml <<'EOF'
-production:
-  adapter: "postgresql"
-  database: "msfgit"
-  username: "msfgit"
-  password: "msf"
-  port: 5432
-  host: "localhost"
-  pool: 256
-  timeout: 5
-EOF
+sleep 2
+# su - postgres -c "\
+# createuser msfgit -P -S -R -D
+# "
+# su - postgres -c "\
+# createdb -O msfgit msfgit
+# "
+# cat - > /usr/share/metasploit/database.yml <<'EOF'
+# production:
+#   adapter: "postgresql"
+#   database: "msfgit"
+#   username: "msfgit"
+#   password: "msf"
+#   port: 5432
+#   host: "localhost"
+#   pool: 256
+#   timeout: 5
+# EOF
 
 echo 'export MSF_DATABASE_CONFIG=/usr/share/metasploit/database.yml' > /etc/profile.d/msf.sh
 chmod +x /etc/profile.d/msf.sh
