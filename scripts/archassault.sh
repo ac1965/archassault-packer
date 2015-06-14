@@ -43,6 +43,7 @@ pacman -S --noconfirm --needed socat
 pacman -S --noconfirm --needed stunnel
 pacman -S --noconfirm --needed tcpreplay
 pacman -S --noconfirm --needed burpsuite
+pacman -S --noconfirm --needed owasp-bywaf-git
 pacman -S --noconfirm --needed netcat
 pacman -S --noconfirm --needed ollydbg
 pacman -S --noconfirm --needed js-beautify
