@@ -9,7 +9,7 @@ example: virtualbox
 ```sh
 git clone https://github.com/ac1965/archassault-packer.git
 cd archassault-packer/
-packer build -only=virtualbox-iso template.json
+packer build -only=virtualbox-iso archassault.json
 vagrant box add archassault packer_archassult_virualbox.box
 vagrant up
 ```

@@ -4,6 +4,11 @@ export TMPDIR=/var/tmp
 cd /tmp
 
 echo [+] Install Generic
+pacman -S --noconfirm --needed linux-archassault-headers
+pacman -S --noconfirm --needed linux-archasasult
+pacman -S --noconfirm --needed virtualbox-guest-modules-archassault
+pacman -S --noconfirm --needed archassault-artwork
+
 pacman -S --noconfirm --needed arp-scan
 pacman -S --noconfirm --needed bsdiff
 pacman -S --noconfirm --needed cadaver
@@ -37,19 +42,22 @@ pacman -S --noconfirm --needed siege
 pacman -S --noconfirm --needed socat
 pacman -S --noconfirm --needed stunnel
 pacman -S --noconfirm --needed tcpreplay
-pacman -S --noconfirm --needed wireshark-cli
+pacman -S --noconfirm --needed burpsuite
+pacman -S --noconfirm --needed netcat
 pacman -S --noconfirm --needed ollydbg
 pacman -S --noconfirm --needed js-beautify
-pacman -S --noconfirm --needed clamav
-pacman -S --noconfirm --needed \
-       mitmf-git \
-       viper-git \
-       malheur
+pacman -S --noconfirm --needed nessus
+pacman -S --noconfirm --needed armitage
+pacman -S --noconfirm --needed clamav yara mitmf-git viper-git malheur
+pacman -S --noconfirm --needed cymothoa enyelkm hotpatch jynx2 rrs tsh \
+       webshells backdoor-factory-git
+
+
 pacman -Sc --noconfirm
 
 
 echo [+] Install Metasploit
-pacman -S --noconfirm --needed metasploit
+pacman -S --noconfirm --needed metasploit-git
 pacman -Sc --noconfirm
 
 

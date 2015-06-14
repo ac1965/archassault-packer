@@ -6,7 +6,7 @@ cd /tmp
 echo [+] Install Apps
 sleep 2
 pacman -S --noconfirm --needed \
-       automake automake1.11 autoconf bison flex gdb
+       automake automake1.11 autoconf bison flex gdb zsh
 pacman -S --noconfirm --needed bzr mercurial subversion
 pacman -S --noconfirm --needed alsa-utils
 pacman -S --noconfirm --needed wpa_actiond wpa_supplicant crda
@@ -32,12 +32,14 @@ pacman -S --noconfirm --needed \
 pacman -S --noconfirm --needed pygtk
 pacman -S --noconfirm --needed wireshark-qt
 pacman -S --noconfirm --needed emacs
+pacman -S --noconfirm --needed weechat
 
 pacman -S --noconfirm --needed postgresql mysql
 
 pacman -S --noconfirm --needed anthy uim
 pacman -S --noconfirm --needed autocutsel xterm
 pacman -S --noconfirm --needed feh scrot
+pacman -S --noconfirm --needed conky
 pacman -S --noconfirm --needed mousepad xclip xpad xmind
 pacman -S --noconfirm --needed nautilus
 pacman -S --noconfirm --needed go googlecl

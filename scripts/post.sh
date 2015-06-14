@@ -22,8 +22,8 @@ test -d /etc/ld.so.conf.d || install -d /etc/ld.so.conf.d
 echo '/usr/local/lib' > /etc/ld.so.conf.d/locallib.conf
 
 usermod -aG "adbusers,audio,tor,postgres,mysql" vagrant
+usermod -s /bin/zsh vagrant
 
-# systemctl start slim.service
 systemctl enable slim.service
 
 systemd-tmpfiles --create postgresql.conf
@@ -33,23 +33,26 @@ initdb --locale en_US.UTF-8 -E UTF8 -D '/var/lib/postgres/data'
 systemctl start postgresql
 systemctl enable postgresql
 sleep 2
-# su - postgres -c "\
-# createuser msfgit -P -S -R -D
-# "
-# su - postgres -c "\
-# createdb -O msfgit msfgit
-# "
-# cat - > /usr/share/metasploit/database.yml <<'EOF'
-# production:
-#   adapter: "postgresql"
-#   database: "msfgit"
-#   username: "msfgit"
-#   password: "msf"
-#   port: 5432
-#   host: "localhost"
-#   pool: 256
-#   timeout: 5
-# EOF
+su - postgres -c "\
+cat <<'EOF' | createuser msfgit -P -S -R -D
+msf
+msf
+EOF
+"
+su - postgres -c "\
+createdb -O msfgit msfgit
+"
+cat - > /usr/share/metasploit/database.yml <<'EOF'
+production:
+  adapter: "postgresql"
+  database: "msfgit"
+  username: "msfgit"
+  password: "msf"
+  port: 5432
+  host: "localhost"
+  pool: 256
+  timeout: 5
+EOF
 
 echo 'export MSF_DATABASE_CONFIG=/usr/share/metasploit/database.yml' > /etc/profile.d/msf.sh
 chmod +x /etc/profile.d/msf.sh
@@ -61,19 +64,10 @@ su - vagrant -c "\
 git clone git://github.com/ac1965/vagrant-dotfiles.git && \
 cd vagrant-dotfiles && ./setup.sh
 "
-
-su - vagrant -c "\
-git clone git://github.com/yyuu/pyenv.git ~/.pyenv && \
-cd ~/.pyenv/plugins && \
-git clone git://github.com/yyuu/pyenv-virtualenv.git && \
-source ~/.bashrc && \
-pyenv install 2.7.9 && \
-pyenv virtualenv 2.7.9 sandbox279 && \
-pyenv global sandbox279
-"
-
 su - vagrant -c "test -d ~/github || install -d ~/github"
-for repos in MalwareLu/malwasm ytisf/theZoo
+for repos in \
+    MalwareLu/malwasm ytisf/theZoo \
+    offensive-security/exploit-database offensive-security/exploit-bin-sploits
 do
     su - vagrant -c "cd github; git clone git://github.com/${repos}.git"
 done
