@@ -67,7 +67,8 @@ cd vagrant-dotfiles && ./setup.sh
 su - vagrant -c "test -d ~/github || install -d ~/github"
 for repos in \
     MalwareLu/malwasm ytisf/theZoo \
-    offensive-security/exploit-database offensive-security/exploit-bin-sploits
+    offensive-security/exploit-database offensive-security/exploit-bin-sploits \
+    kbandla/APTnotes
 do
     su - vagrant -c "cd github; git clone git://github.com/${repos}.git"
 done
