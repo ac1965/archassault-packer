@@ -61,7 +61,7 @@ echo [+] User Environment Setup
 sleep 2
 
 su - vagrant -c "\
-git clone git://github.com/ac1965/vagrant-dotfiles.git && \
+git clone git://github.com/ac1965/vagrant-dotfiles.git --recursive && \
 cd vagrant-dotfiles && ./setup.sh
 "
 su - vagrant -c "test -d ~/github || install -d ~/github"

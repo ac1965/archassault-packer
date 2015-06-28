@@ -63,6 +63,9 @@ su - vagrant -c "env TMPDIR=/var/tmp yaourt -S --noconfirm --needed \
 su - vagrant -c "env TMPDIR=/var/tmp yaourt -S --noconfirm --needed \
   otf-takao ttf-ms-fonts ttf-ricty
 "
+su - vagrant -c "env TMPDIR=/var/tmp yaourt -S --noconfirm --needed \
+  acroread9-fonts
+"
 
 pacman -R --noconfirm libsodium libspiro libunicodenames libxkbui zeromq fontforge
 pacman -Sc --noconfirm

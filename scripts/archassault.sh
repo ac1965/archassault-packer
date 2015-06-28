@@ -52,6 +52,16 @@ pacman -S --noconfirm --needed armitage
 pacman -S --noconfirm --needed clamav yara mitmf-git viper-git malheur
 pacman -S --noconfirm --needed cymothoa enyelkm hotpatch jynx2 rrs tsh \
        webshells backdoor-factory-git
+pacman -S --noconfirm --needed skipfish
+pacman -S --noconfirm --needed nikto
+pacman -S --noconfirm --needed w3af
+pacman -S --noconfirm --needed sslyze
+pacman -S --noconfirm --needed arachni
+pacman -S --noconfirm --needed sqlmap
+pacman -S --noconfirm --needed sslscan
+pacman -S --noconfirm --needed tlssled
+pacman -S --noconfirm --needed slowhttptest
+pacman -S --noconfirm --needed dirb
 
 
 pacman -Sc --noconfirm
