@@ -1,6 +1,6 @@
 {
     "variables": {
-        "box_desc": "ArchAssault base 2015.06.01 64 Bit",
+        "box_desc": "ArchAssault base 2015.07.01 64 Bit",
         "guest_os_type": "ArchLinux_64",
         "iso_url": "http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/iso/2015.07.01/archlinux-2015.07.01-dual.iso",
         "iso_checksum": "a025ac8e23131b038a0b7f949faeb04d382e5b25",
