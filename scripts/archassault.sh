@@ -62,6 +62,7 @@ pacman -S --noconfirm --needed sslscan
 pacman -S --noconfirm --needed tlssled
 pacman -S --noconfirm --needed slowhttptest
 pacman -S --noconfirm --needed dirb
+pacman -S --noconfirm --needed edb nasm
 
 
 pacman -Sc --noconfirm
